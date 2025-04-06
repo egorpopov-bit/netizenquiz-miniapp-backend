@@ -5,6 +5,7 @@ require('dotenv').config();
 const quizzesRoutes = require('./routes/quizzes');
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin'); // ← добавляем здесь
+const resultsRoutes = require('./routes/results');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use('/api/quizzes', quizzesRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes); // ← и вот здесь используем
+app.use('/api/results', resultsRoutes);
 
 app.get('/', (req, res) => {
   res.send('Netizen Quiz MiniApp Backend is running 🎉');

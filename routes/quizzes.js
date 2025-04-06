@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-// Получение всех квизов (с фильтрацией по query)
+// Получение всех квизов с фильтрацией по параметрам
 router.get('/', async (req, res) => {
   const { category, isPopular, isNew } = req.query;
   try {
@@ -15,11 +15,11 @@ router.get('/', async (req, res) => {
     }
 
     if (isPopular === 'true') {
-      query += ` AND is_popular = true`;
+      query += ' AND is_popular = true';
     }
 
     if (isNew === 'true') {
-      query += ` AND is_new = true`;
+      query += ' AND is_new = true';
     }
 
     const result = await db.query(query, params);
