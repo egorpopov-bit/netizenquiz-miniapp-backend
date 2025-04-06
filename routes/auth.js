@@ -1,10 +1,26 @@
 const express = require('express');
 const axios = require('axios');
+const jwt = require('jsonwebtoken'); // Добавляем jwt
 const router = express.Router();
 
 const TELEGRAM_BOT_TOKEN = process.env.BOT_TOKEN;
 const CHANNEL_USERNAME = '@itsnetizen'; // замени на своё, если нужно
 
+// 👉 Выдача JWT токена
+router.post('/', (req, res) => {
+  const { id, first_name } = req.body;
+
+  if (!id || !first_name) {
+    return res.status(400).json({ error: 'Missing user data' });
+  }
+
+  const payload = { id, first_name };
+  const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '30d' });
+
+  res.json({ token });
+});
+
+// 👉 Проверка подписки на канал
 router.get('/check-subscription', async (req, res) => {
   const { user_id } = req.query;
 
