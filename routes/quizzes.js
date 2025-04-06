@@ -30,8 +30,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-module.exports = router;
-
 router.get('/:id', async (req, res) => {
   const quizId = req.params.id;
 
@@ -86,3 +84,5 @@ router.get('/:id', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+module.exports = router;
