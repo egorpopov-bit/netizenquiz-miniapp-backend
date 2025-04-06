@@ -13,9 +13,9 @@ app.use(cors());
 app.use(express.json());
 
 // Подключаем роуты
-app.use('/quizzes', quizzesRoutes);
-app.use('/auth', authRoutes);
-app.use('/admin', adminRoutes); // ← и вот здесь используем
+app.use('/api/quizzes', quizzesRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes); // ← и вот здесь используем
 
 app.get('/', (req, res) => {
   res.send('Netizen Quiz MiniApp Backend is running 🎉');
